@@ -9,18 +9,17 @@ Version: 1.0
 */
 -- create database
 CREATE DATABASE BikeStores
-go
-
+GO
 
 use BikeStores
-go
+GO
 
 -- create schemas
 CREATE SCHEMA production;
-go
+GO
 
 CREATE SCHEMA sales;
-go
+GO
 
 -- create tables
 CREATE TABLE production.categories (
