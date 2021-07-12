@@ -8,7 +8,7 @@ SQL template scripts I've collated over time.
 | sql            | Template SQL scripts |
 
 
-## EG_BikeStore_DB
+## eg_bikestore_db
 
 This folder contains SQL scripts to create and populate a sample bike store database in both an MSSQL and Snowflake DB. To run these scripts, see the 2 `makefiles` within `eg_bikestroe_db`.
 
