@@ -1,6 +1,12 @@
 ## sql_templates
 
-SQL template scripts I've collated over time
+SQL template scripts I've collated over time.
+
+| Folder                    | Description                                                                                       |
+| --------------------------| --------------------------------------------------------------------------------------------------|
+| eg_bikestore_db            | Template SQL scripts to create a sample Bike store db |
+| sql            | Template SQL scripts |
+
 
 ## EG_BikeStore_DB
 
