@@ -1,4 +1,4 @@
-default: create_snowflake_account_objs create_snowflake_raw_db_objs
+all: create_snowflake_account_objs create_snowflake_raw_db_objs
 
 PROGRAM=BIKESTORES
 SNOWFLAKE_CONN_PROFILE=dbt_cicd_demo
