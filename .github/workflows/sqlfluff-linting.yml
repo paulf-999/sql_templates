@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: "3.7.x"
-      - name: Install sqlfluf
+      - name: Install sqlfluff
         run: pip3 install sqlfluff
       - name: Run sqlfluff for Snowflake scripts
         run: sqlfluff lint eg_bikestore_db/snowflake --dialect snowflake
