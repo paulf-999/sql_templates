@@ -1,0 +1,24 @@
+name: cloudformation_linting
+on:
+  # Trigger the workflow on push requests,
+  # but only for the main branch
+  push:
+    branches:
+      - main
+
+jobs:
+  cloudformation-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Setup python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.7.x"
+      - name: Install sqlfluf
+        run: pip3 install sqlfluff
+      - name: Run sqlfluff for Snowflake scripts
+        run: sqlfluff lint eg_bikestore_db/snowflake --dialect snowflake
+      - name: Run sqlfluff for generic SQL scripts
+        run: sqlfluff lint sql/
