@@ -1,4 +1,4 @@
-name: cloudformation_linting
+name: sql_linting
 on:
   # Trigger the workflow on push requests,
   # but only for the main branch
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  cloudformation-linter:
+  sqlfluff-linter:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
