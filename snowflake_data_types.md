@@ -1,6 +1,6 @@
 ## Snowflake data types
 
-To help establish consistency and naming standards, listed below are the default data types to use, prior to bespoke decision making:
+To help establish consistency and naming standards, listed below are the default data types to use in Snowflake. That is, prior to any subsequent bespoke decision making:
 
 | Data type category | Default data type to use | Reason | Description |
 | -------------------| -------------------------| ----------- | --- |
