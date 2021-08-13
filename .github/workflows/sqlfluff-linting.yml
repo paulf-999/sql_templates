@@ -19,4 +19,4 @@ jobs:
       - name: Install sqlfluff
         run: pip3 install sqlfluff \
       - name: Run sqlfluff for generic SQL scripts
-        run: sqlfluff lint --dialect snowflake sql/ --exclude-rules L029
+        run: sqlfluff lint --dialect snowflake sql/ --exclude-rules L019
