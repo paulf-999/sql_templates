@@ -19,4 +19,4 @@ jobs:
       - name: Install sqlfluff
         run: pip3 install sqlfluff
       - name: Run sqlfluff for generic SQL scripts
-        run: sqlfluff --dialect snowflake lint sql/
+        run: sqlfluff lint --dialect snowflake sql/
