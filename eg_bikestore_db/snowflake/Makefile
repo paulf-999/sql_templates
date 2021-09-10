@@ -44,25 +44,25 @@ clean:
 create_snowflake_account_objs:
 	$(info [+] Create the snowflake account objects)
 	@[ "${sf_conn_profile}" ] || ( echo "\nError: sf_conn_profile variable is not set\n"; exit 1 )
-	@${snowsql_query} -f snowflake/account_objects/role/v1_roles.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/v1_grant_dba_role.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/create/v1_grant_create_db_and_wh_perms.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/resource_monitor/v1_resource_monitors.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/ownership/v1_grant_resource_monitor_ownership_perms.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/warehouse/v1_warehouses.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/ownership/v1_grant_wh_ownership_perms.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/database/v1_raw_db_and_schemas.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/database/v1_curated_db_and_schemas.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/database/v1_analytics_db_and_schemas.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/v1_grant_execute_task_perms.sql --variable program=${program}	--variable ENV=${ENV}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/create/v1_grant_create_stage_perms.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/v1_create_role_hierarchy.sql --variable program=${program}
-	@${snowsql_query} -f snowflake/account_objects/role/permissions/grant_permissions/v1_grant_role_permissions.sql --variable program=${program} --variable ENV=${ENV}
+	@${snowsql_query} -f account_objects/role/v1_roles.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/v1_grant_dba_role.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/create/v1_grant_create_db_and_wh_perms.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/resource_monitor/v1_resource_monitors.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/ownership/v1_grant_resource_monitor_ownership_perms.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/warehouse/v1_warehouses.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/ownership/v1_grant_wh_ownership_perms.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/database/v1_raw_db_and_schemas.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/database/v1_curated_db_and_schemas.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/database/v1_analytics_db_and_schemas.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/v1_grant_execute_task_perms.sql --variable program=${program}	--variable ENV=${ENV}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/create/v1_grant_create_stage_perms.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/v1_create_role_hierarchy.sql --variable program=${program}
+	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/v1_grant_role_permissions.sql --variable program=${program} --variable ENV=${ENV}
 
 create_snowflake_raw_db_objs:
 	$(info [+] Create the snowflake RAW db objects)
-	@${snowsql_query} -f snowflake/database_objects/raw_db/table/v1_tbls.sql --variable program=${program}
+	@${snowsql_query} -f database_objects/raw_db/table/v1_tbls.sql --variable program=${program}
 
 populate_snowflake_raw_db_tbls:
 	$(info [+] Populate the RAW db tables)
-	@${snowsql_query} -f snowflake/load_data.sql --variable program=${program}
+	@${snowsql_query} -f load_data.sql --variable program=${program}
