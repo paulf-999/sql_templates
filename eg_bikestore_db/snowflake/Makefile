@@ -18,9 +18,6 @@ installations: deps install clean
 
 snowsql_query=snowsql -c ${sf_conn_profile} -o friendly=false -o header=false -o timing=false
 
-beep:
-	${snowsql_query}
-
 deps:
 	$(info [+] Download the relevant dependencies)
 	# download SnowSQL
@@ -38,7 +35,6 @@ install:
 	@sed -i -e "s/%sf_username/${sf_username}/g" tmp/conn_profile.txt
 	@sed -i -e "s/%sf_pass/${sf_pass}/g" tmp/conn_profile.txt
 	@cat tmp/conn_profile.txt >> ~/.snowsql/config
-	@rm tmp/conn_profile.txt-e
 
 clean:
 	$(info [+] Remove any redundant files, e.g. downloads)
