@@ -10,9 +10,9 @@ SQL template scripts I've collated over time.
 
 ## eg_bikestore_db
 
-This folder contains SQL scripts to create and populate a sample bike store database in both an MSSQL and Snowflake DB. To run these scripts, see the 2 `makefiles` within `eg_bikestroe_db`.
+This folder contains SQL scripts to create and populate a sample bike store database in both an MSSQL and Snowflake DB. To run these scripts, see the 2 `makefiles` within the respective folders inside `eg_bikestore_db`.
 
 ### Prerequisite
 
-Note: There is a prerequisite to executing the Snowflake scripts, in that a SnowSQL 'named profile' (containing your login creds) needs to be created. Whatever name you given this then needs to be assigned to the variable `${SNOWFLAKE_CONN_PROFILE}`
+Note: There is a prerequisite to executing the Snowflake scripts, in that a SnowSQL 'named profile' (containing your login creds) needs to be created. Though this is now part of the build script (`Makefile`).
 
