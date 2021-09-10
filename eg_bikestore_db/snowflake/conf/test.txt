@@ -1,0 +1,5 @@
+[connections.bikestores]
+
+accountname = accountname
+username = username
+password = password1234

@@ -1,0 +1,5 @@
+
+[connections.%program]
+accountname = %sf_acc_name
+username = %sf_username
+password = %sf_pass
