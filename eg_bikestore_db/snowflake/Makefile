@@ -32,9 +32,7 @@ install:
 	@cd tmp && installer -pkg snowsql-darwin_x86_64.pkg -target CurrentUserHomeDirectory
 	# optional (for .z-shell only: add an alias to snowsql to your profile)
 	@echo "alias snowsql=~/Applications/SnowSQL.app/Contents/MacOS/snowsql" >> ~/.zshrc && source ~/.zshrc
-
-#add_sf_conn_profile:
-test:
+	# Create a Snowflake connection profile
 	@sed "s/%program/${program_lower}/g" conf/conn_profile.txt > tmp/conn_profile.txt
 	@sed -i -e "s/%sf_acc_name/${sf_acc_name}/g" tmp/conn_profile.txt
 	@sed -i -e "s/%sf_username/${sf_username}/g" tmp/conn_profile.txt
