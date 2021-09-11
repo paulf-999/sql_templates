@@ -2,7 +2,7 @@ SHELL = /bin/sh
 
 default: create_snowflake_account_objs create_snowflake_raw_db_objs
 
-config_file=conf/config.json
+config_file=ip/config.json
 
 $(eval program=$(shell jq '.Parameters.program' ${config_file}))
 $(eval program_upper=$(shell echo $(program) | tr 'a-z' 'A-Z'))
@@ -31,7 +31,7 @@ install:
 	# optional (for .z-shell only: add an alias to snowsql to your profile)
 	@echo "alias snowsql=~/Applications/SnowSQL.app/Contents/MacOS/snowsql" >> ~/.zshrc && source ~/.zshrc
 	# Create a Snowflake connection profile
-	@sed "s/%program/${program_lower}/g" conf/conn_profile.txt > tmp/conn_profile.txt
+	@sed "s/%program/${program_lower}/g" ip/conn_profile.txt > tmp/conn_profile.txt
 	@sed -i -e "s/%sf_acc_name/${sf_acc_name}/g" tmp/conn_profile.txt
 	@sed -i -e "s/%sf_username/${sf_username}/g" tmp/conn_profile.txt
 	@sed -i -e "s/%sf_pass/${sf_pass}/g" tmp/conn_profile.txt
