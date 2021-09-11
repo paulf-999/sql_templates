@@ -1,0 +1,34 @@
+!SET variable_substitution=true;
+USE ROLE &{PROGRAM}_DBA;
+USE WAREHOUSE &{PROGRAM}_DEVELOPER_WH;
+USE DATABASE &{PROGRAM}_RAW_DB;
+USE SCHEMA UTILITIES;
+
+-- production schema inserts
+COPY INTO PRODUCTION.BRANDS FROM @&{PROGRAM}_STAGE
+    FILES=('brands.csv.gz');
+
+COPY INTO PRODUCTION.CATEGORIES FROM @&{PROGRAM}_STAGE
+    FILES=('categories.csv.gz');
+
+COPY INTO PRODUCTION.PRODUCTS FROM @&{PROGRAM}_STAGE
+    FILES=('products.csv.gz');
+
+COPY INTO PRODUCTION.STOCKS FROM @&{PROGRAM}_STAGE
+    FILES=('stocks.csv.gz');
+
+-- sales schema inserts
+COPY INTO SALES.CUSTOMERS FROM @&{PROGRAM}_STAGE
+    FILES=('customers.csv.gz');
+
+COPY INTO SALES.ORDER_ITEMS FROM @&{PROGRAM}_STAGE
+    FILES=('order_items.csv.gz');
+
+COPY INTO SALES.ORDERS FROM @&{PROGRAM}_STAGE
+    FILES=('orders.csv.gz');
+
+COPY INTO SALES.STAFFS FROM @&{PROGRAM}_STAGE
+    FILES=('staffs.csv.gz');
+
+COPY INTO SALES.STORES FROM @&{PROGRAM}_STAGE
+    FILES=('stores.csv.gz');

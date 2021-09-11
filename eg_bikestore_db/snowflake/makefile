@@ -5,6 +5,7 @@ default: create_snowflake_account_objs create_snowflake_raw_db_objs
 config_file=conf/config.json
 
 $(eval program=$(shell jq '.Parameters.program' ${config_file}))
+$(eval program_upper=$(shell echo $(program) | tr 'a-z' 'A-Z'))
 $(eval program_lower=$(shell echo $(program) | tr 'A-Z' 'a-z'))
 $(eval sf_conn_profile=$(shell echo $(program) | tr 'A-Z' 'a-z'))
 $(eval bootstrap_version=$(shell jq '.Parameters.bootstrap_version' ${config_file}))
@@ -63,6 +64,12 @@ create_snowflake_raw_db_objs:
 	$(info [+] Create the snowflake RAW db objects)
 	@${snowsql_query} -f database_objects/raw_db/table/v1_tbls.sql --variable program=${program}
 
-populate_snowflake_raw_db_tbls:
-	$(info [+] Populate the RAW db tables)
-	@${snowsql_query} -f load_data.sql --variable program=${program}
+load_ip_data:
+	$(info [+] Create stages, upload files to stage then load into target tables)
+	#@${snowsql_query} -f database_objects/raw_db/file_format/v1_csv_file_format.sql --variable PROGRAM=${program}
+	#@${snowsql_query} -f database_objects/raw_db/stage/v1_bikestores_stage.sql --variable PROGRAM=${program_upper}
+
+	# upload the files
+	@${snowsql_query} -f data_loading/upload_data.sql --variable PROGRAM=${program}
+	@${snowsql_query} -f data_loading/insert_data_into_raw_tbls.sql --variable PROGRAM=${program}
+
