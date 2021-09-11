@@ -5,6 +5,7 @@ SQL template scripts I've collated over time.
 | Folder                    | Description                                                                                       |
 | --------------------------| --------------------------------------------------------------------------------------------------|
 | eg_bikestore_db            | Template SQL scripts to create a sample Bike store db |
+| naming_conventions            | SQL styleguide and standard Snowflake data type usage |
 | sql            | Template SQL scripts |
 
 
