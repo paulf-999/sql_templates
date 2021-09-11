@@ -14,9 +14,9 @@ $(eval sf_acc_name=$(shell jq '.Parameters.SnowflakeParams.sf_acc_name' ${config
 $(eval sf_username=$(shell jq '.Parameters.SnowflakeParams.sf_username' ${config_file}))
 $(eval sf_pass=$(shell jq '.Parameters.SnowflakeParams.sf_pass' ${config_file}))
 
-installations: deps install clean
-
 snowsql_query=snowsql -c ${sf_conn_profile} -o friendly=false -o header=false -o timing=false
+
+installations: deps install clean
 
 deps:
 	$(info [+] Download the relevant dependencies)
