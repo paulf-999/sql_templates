@@ -62,12 +62,12 @@ create_snowflake_account_objs:
 
 create_snowflake_raw_db_objs:
 	$(info [+] Create the snowflake RAW db objects)
-	@${snowsql_query} -f database_objects/raw_db/table/v1_tbls.sql --variable program=${program}
+	@${snowsql_query} -f database_objects/raw_db/table/v1_raw_db_tbls.sql --variable program=${program}
 
 load_ip_data:
 	$(info [+] Create stages, upload files to stage then load into target tables)
-	#@${snowsql_query} -f database_objects/raw_db/file_format/v1_csv_file_format.sql --variable PROGRAM=${program}
-	#@${snowsql_query} -f database_objects/raw_db/stage/v1_bikestores_stage.sql --variable PROGRAM=${program_upper}
+	@${snowsql_query} -f database_objects/raw_db/file_format/v1_csv_file_format.sql --variable PROGRAM=${program}
+	@${snowsql_query} -f database_objects/raw_db/stage/v1_bikestores_stage.sql --variable PROGRAM=${program_upper}
 
 	# upload the files
 	@${snowsql_query} -f data_loading/upload_data.sql --variable PROGRAM=${program}
