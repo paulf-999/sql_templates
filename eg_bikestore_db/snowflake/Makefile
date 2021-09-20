@@ -45,6 +45,8 @@ clean:
 create_snowflake_account_objs:
 	$(info [+] Create the snowflake account objects)
 	@[ "${sf_conn_profile}" ] || ( echo "\nError: sf_conn_profile variable is not set\n"; exit 1 )
+	# set the default timezone and timestamp values
+	@${snowsql_query} -f set_default_tz_and_ts.sql
 	@${snowsql_query} -f account_objects/role/v1_roles.sql --variable program=${program}
 	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/v1_grant_dba_role.sql --variable program=${program}
 	@${snowsql_query} -f account_objects/role/permissions/grant_permissions/create/v1_grant_create_db_and_wh_perms.sql --variable program=${program}
@@ -62,7 +64,8 @@ create_snowflake_account_objs:
 
 create_snowflake_raw_db_objs:
 	$(info [+] Create the snowflake RAW db objects)
-	@${snowsql_query} -f database_objects/raw_db/table/v1_raw_db_tbls.sql --variable program=${program}
+	@${snowsql_query} -f database_objects/raw_db/table/v1_sales_tbls.sql --variable program=${program}
+	@${snowsql_query} -f ddatabase_objects/raw_db/table/v1_production_tbls.sql --variable program=${program}
 
 load_ip_data:
 	$(info [+] Create stages, upload files to stage then load into target tables)
@@ -71,5 +74,5 @@ load_ip_data:
 
 	# upload the files
 	@${snowsql_query} -f data_loading/upload_data.sql --variable PROGRAM=${program}
-	@${snowsql_query} -f data_loading/insert_data_into_raw_tbls.sql --variable PROGRAM=${program}
-
+	@${snowsql_query} -f data_loading/insert_data_into_raw_production_tbls.sql --variable PROGRAM=${program}
+	@${snowsql_query} -f data_loading/insert_data_into_raw_sales_tbls.sql --variable PROGRAM=${program}
