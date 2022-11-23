@@ -2,7 +2,7 @@
 WITH tables_recent AS (
 
     SELECT f1.value:"objectName"::string AS tn
-    FROM snowflake_account_usage.access_history AS access_history
+    FROM snowflake.account_usage.access_history AS access_history
     , LATERAL FLATTEN(base_objects_accessed) AS f1
     WHERE
         f1.value:"objectDomain"::string = 'Table'
@@ -16,7 +16,7 @@ WITH tables_recent AS (
     SELECT
         table_id::integer AS tid
         , table_catalog || '.' || table_schema || '.' || table_name AS tn1
-    FROM snowflake_account_usage.tables
+    FROM snowflake.account_usage.tables
     WHERE deleted IS NULL
 )
 
