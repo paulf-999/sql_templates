@@ -1,4 +1,4 @@
--- Tables not being queried in last X days
+-- query to show tables not being queried in last 90 days (change line 10 to define a different time period)
 WITH tables_recent AS (
 
     SELECT f1.value:"objectName"::string AS tn
