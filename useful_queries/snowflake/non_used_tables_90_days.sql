@@ -31,5 +31,5 @@ SELECT
     , table_name
 FROM tables_all
 WHERE tbl_namespace NOT IN (
-    SELECT table_name_recent FROM tables_recent
+    SELECT table_namespace_recent FROM tables_recent
 );
