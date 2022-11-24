@@ -1,12 +1,12 @@
 -- query to show tables not being queried in last 90 days (change line 10 to define a different time period)
 WITH tables_recent AS (
 
-    SELECT f1.value:"objectName"::string AS table_name_recent
+    SELECT flattend_tbl_obj.value:objectName::string AS table_namespace_recent
     FROM snowflake.account_usage.access_history AS access_history
-    , LATERAL FLATTEN(base_objects_accessed) AS f1
+    , LATERAL FLATTEN(base_objects_accessed) AS flattend_tbl_obj
     WHERE
-        f1.value:"objectDomain"::string = 'Table'
-        AND f1.value:"objectId" IS NOT NULL
+        TO_VARCHAR(flattend_tbl_obj.value:objectDomain) = 'Table'
+        AND flattend_tbl_obj.value:objectId IS NOT NULL
         AND access_history.query_start_time >= DATEADD('day', -90, CURRENT_TIMESTAMP())
     GROUP BY 1
 )
